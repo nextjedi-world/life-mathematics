@@ -127,6 +127,14 @@ android/key.properties
 android/app/upload-keystore.jks
 *.jks
 *.keystore
+# Keystore backups and variants (e.g. upload-keystore.jks.old) - this repo is public
+*.jks*
+*.keystore*
+*.p12
+*.p8
+*.mobileprovision
+# Claude Code local settings
+.claude/settings.local.json
 
 # Local Android SDK
 build-tools/

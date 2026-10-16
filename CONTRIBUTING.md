@@ -46,8 +46,7 @@ Feature requests are welcome! Please include:
 
 3. **Test your changes**
    ```bash
-   flutter test
-   flutter analyze
+   make verify   # dart format check, flutter analyze, flutter test --coverage, debug APK build
    ```
 
 4. **Commit your changes**
@@ -74,7 +73,14 @@ Feature requests are welcome! Please include:
 
 ## Development Setup
 
-See [SETUP.md](SETUP.md) for detailed setup instructions.
+See [docs/SETUP.md](docs/SETUP.md) for detailed setup instructions. Then:
+
+```bash
+make setup          # flutter pub get, git hooks, .env from .env.example
+lefthook install    # if make setup skipped it: format/analyze on commit, conventional commit check, make verify on push
+```
+
+Install lefthook with `npm i -g lefthook` (or `brew install lefthook`).
 
 ## Code Style
 

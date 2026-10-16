@@ -689,8 +689,7 @@ class BreakdownTable extends StatelessWidget {
           Row(
             children: [
               for (final column in columns)
-                _cell(context, column.label,
-                    flex: column.flex, isHeader: true),
+                _cell(context, column.label, flex: column.flex, isHeader: true),
             ],
           ),
           const SizedBox(height: 8),

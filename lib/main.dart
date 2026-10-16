@@ -12,14 +12,17 @@ import 'providers/shell_provider.dart';
 import 'screens/calculator_screen.dart';
 import 'screens/history_screen.dart';
 import 'screens/smart_calculators_screen.dart';
+import 'utils/telemetry.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final prefs = await SharedPreferences.getInstance();
-  final isDarkMode = prefs.getBool('darkMode') ?? true; // default dark
+// Telemetry.run only wraps the app in Sentry when built with
+// --dart-define=SENTRY_DSN=...; otherwise it just runs the body below.
+Future<void> main() => Telemetry.run(() async {
+      WidgetsFlutterBinding.ensureInitialized();
+      final prefs = await SharedPreferences.getInstance();
+      final isDarkMode = prefs.getBool('darkMode') ?? true; // default dark
 
-  runApp(LifeMathematicsApp(isDarkMode: isDarkMode));
-}
+      runApp(LifeMathematicsApp(isDarkMode: isDarkMode));
+    });
 
 class LifeMathematicsApp extends StatefulWidget {
   final bool isDarkMode;

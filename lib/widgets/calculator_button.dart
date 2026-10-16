@@ -50,8 +50,8 @@ class CalculatorButton extends StatelessWidget {
           },
           borderRadius: BorderRadius.circular(999),
           splashColor: palette.primary.withValues(alpha: 0.15),
-          highlightColor: (isDark ? Colors.white : Colors.black)
-              .withValues(alpha: 0.05),
+          highlightColor:
+              (isDark ? Colors.white : Colors.black).withValues(alpha: 0.05),
           child: Center(
             child: FittedBox(
               fit: BoxFit.scaleDown,

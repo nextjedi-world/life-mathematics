@@ -2,6 +2,7 @@
 
 A comprehensive, all-purpose calculator app built with Flutter for everyday calculations, financial planning, and mathematical operations.
 
+[![ci](https://github.com/nextjedi/life-mathematics/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/nextjedi/life-mathematics/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Flutter](https://img.shields.io/badge/Flutter-3.0+-02569B.svg?logo=flutter)](https://flutter.dev)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -64,7 +65,7 @@ A comprehensive, all-purpose calculator app built with Flutter for everyday calc
 - Flutter SDK 3.0 or higher
 - Dart 3.0 or higher
 
-See [SETUP.md](SETUP.md) for detailed installation instructions.
+See [SETUP.md](docs/SETUP.md) for detailed installation instructions.
 
 ### Quick Start
 
@@ -138,7 +139,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 
 ## Requirements
 
-See [REQUIREMENTS.md](REQUIREMENTS.md) for detailed functional and technical requirements.
+See [REQUIREMENTS.md](docs/REQUIREMENTS.md) for detailed functional and technical requirements.
 
 ## Roadmap
 

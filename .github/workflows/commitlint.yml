@@ -1,0 +1,66 @@
+# PR title must be a conventional commit (it becomes the squash-merge commit release-please reads)
+# and the PR body must reference a Linear issue (Fixes NEX-123).
+# Inlined from nextjedi/platform/.github/workflows/commitlint.yml (a public repo cannot call
+# reusable workflows from the private platform repo). Keep in sync.
+name: commitlint
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  pr-title:
+    name: conventional PR title
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          package-manager-cache: false
+
+      - name: Install commitlint
+        run: |
+          dir="$RUNNER_TEMP/commitlint"
+          mkdir -p "$dir"
+          echo '{"private": true}' > "$dir/package.json"
+          npm install --prefix "$dir" --no-audit --no-fund --silent \
+            @commitlint/cli@21.2.3 @commitlint/config-conventional@21.2.3
+          cat > "$dir/commitlint.config.mjs" <<'CONFIG'
+          export default {
+            extends: ['@commitlint/config-conventional'],
+            rules: {
+              'header-max-length': [2, 'always', 100],
+              'subject-case': [0],
+              'body-max-line-length': [0],
+              'footer-max-line-length': [0],
+            },
+          };
+          CONFIG
+
+      - name: Lint PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          dir="$RUNNER_TEMP/commitlint"
+          echo "PR title: $PR_TITLE"
+          if ! printf '%s\n' "$PR_TITLE" | "$dir/node_modules/.bin/commitlint" --config "$dir/commitlint.config.mjs" --cwd "$dir"; then
+            echo "::error title=PR title::The PR title must be a conventional commit, e.g. 'feat(emi): add prepayment' or 'fix: handle empty input'."
+            exit 1
+          fi
+
+      - name: Check Linear reference
+        if: github.event.pull_request.user.type != 'Bot'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if printf '%s\n' "$PR_BODY" | grep -Eiq "(fixes|closes|resolves|refs|part of)[[:space:]:]+NEX-[0-9]+"; then
+            echo "Linear reference found."
+          else
+            echo "::error title=Linear reference::Add a line like 'Fixes NEX-123' to the PR body."
+            exit 1
+          fi

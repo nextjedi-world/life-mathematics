@@ -1,0 +1,73 @@
+# CI for life-mathematics (stack: flutter).
+# The platform's reusable ci-flutter.yml lives in a private repo, which a public repo cannot call,
+# so its steps are inlined here. Keep them in sync with nextjedi/platform/.github/workflows/ci-flutter.yml.
+# azure-pipelines.yml still does the signed store builds until NEX-1138 / NEX-1019.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NEXTJEDI_PRODUCT: life-mathematics
+
+jobs:
+  verify:
+    name: verify (flutter)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out
+        uses: actions/checkout@v7
+
+      - name: Set up Java 17 (Android Gradle Plugin)
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          # pubspec.lock was resolved with Flutter 3.38; Renovate bumps this.
+          flutter-version: 3.38.x
+          channel: stable
+          cache: true
+          pub-cache: true
+          pub-cache-key: flutter-pub-:os:-:channel:-:version:-:arch:-${{ hashFiles('**/pubspec.lock') }}
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: make setup
+        run: make setup
+
+      - name: make verify
+        run: make verify
+
+      - name: Coverage summary
+        if: ${{ !cancelled() && hashFiles('coverage/lcov.info') != '' }}
+        run: |
+          lf=$(awk -F: '/^LF:/ { s += $2 } END { print s + 0 }' coverage/lcov.info)
+          lh=$(awk -F: '/^LH:/ { s += $2 } END { print s + 0 }' coverage/lcov.info)
+          pct=$(awk -v h="$lh" -v f="$lf" 'BEGIN { if (f > 0) printf "%.1f", 100*h/f; else print "0" }')
+          echo "Coverage: ${pct}% (${lh}/${lf} lines)"
+          echo "### Coverage: ${pct}% (${lh}/${lf} lines)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload test reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-flutter
+          path: coverage/
+          if-no-files-found: ignore
+          retention-days: 14

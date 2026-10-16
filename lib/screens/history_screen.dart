@@ -178,7 +178,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
     }
   }
 
-
   void _showClearDialog(BuildContext context, HistoryProvider provider) {
     final palette = context.palette;
     showDialog(
@@ -406,7 +405,8 @@ class _HistoryCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          DateFormat('MMM dd · HH:mm').format(history.timestamp),
+                          DateFormat('MMM dd · HH:mm')
+                              .format(history.timestamp),
                           style: GoogleFonts.manrope(
                             fontSize: 10,
                             color:

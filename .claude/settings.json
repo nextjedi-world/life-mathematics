@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "extraKnownMarketplaces": {
+    "nextjedi": {
+      "source": {
+        "source": "github",
+        "repo": "nextjedi/platform"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "nextjedi-core@nextjedi": true
+  },
+  "env": {
+    "NEXTJEDI_PRODUCT": "life-mathematics"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(make help)",
+      "Bash(make setup)",
+      "Bash(make deps)",
+      "Bash(make verify)",
+      "Bash(make format)",
+      "Bash(make format-check)",
+      "Bash(make analyze)",
+      "Bash(make test)",
+      "Bash(make build)",
+      "Bash(make e2e)",
+      "Bash(flutter pub get)",
+      "Bash(flutter pub deps:*)",
+      "Bash(flutter pub outdated:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter test:*)",
+      "Bash(flutter doctor:*)",
+      "Bash(flutter --version)",
+      "Bash(flutter devices:*)",
+      "Bash(dart format:*)",
+      "Bash(dart analyze:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh issue view:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./android/key.properties)",
+      "Read(./android/app/*.jks*)",
+      "Read(./**/*.p8)",
+      "Read(./**/*.p12)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
+    ]
+  }
+}
