@@ -136,8 +136,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
           hint: '20',
           suffix: 'yrs',
           allowDecimal: true,
-          extraValidator: (value) =>
-              value > 50 ? 'Maximum 50 years' : null,
+          extraValidator: (value) => value > 50 ? 'Maximum 50 years' : null,
         ),
         const SizedBox(height: 16),
         SegmentedSelector<ExtraPaymentFrequency>(

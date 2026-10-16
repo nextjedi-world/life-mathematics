@@ -14,8 +14,7 @@ class CompoundInterestScreen extends StatefulWidget {
   const CompoundInterestScreen({super.key});
 
   @override
-  State<CompoundInterestScreen> createState() =>
-      _CompoundInterestScreenState();
+  State<CompoundInterestScreen> createState() => _CompoundInterestScreenState();
 }
 
 class _CompoundInterestScreenState extends State<CompoundInterestScreen> {
@@ -369,8 +368,8 @@ class _FrequencySelector extends StatelessWidget {
       children: [
         Text(
           'Compounding',
-          style:
-              GoogleFonts.manrope(fontSize: 12, color: palette.onSurfaceVariant),
+          style: GoogleFonts.manrope(
+              fontSize: 12, color: palette.onSurfaceVariant),
         ),
         const SizedBox(height: 8),
         Container(
@@ -577,9 +576,7 @@ class _Chip extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(value,
                   style: GoogleFonts.spaceGrotesk(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: color)),
+                      fontSize: 12, fontWeight: FontWeight.w600, color: color)),
             ),
           ],
         ),
@@ -593,8 +590,7 @@ class _BreakdownCard extends StatelessWidget {
   final List<_YearRow> breakdown;
   final NumberFormat currencyFormat;
 
-  const _BreakdownCard(
-      {required this.breakdown, required this.currencyFormat});
+  const _BreakdownCard({required this.breakdown, required this.currencyFormat});
 
   @override
   Widget build(BuildContext context) {
@@ -630,8 +626,8 @@ class _BreakdownCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 6),
                 child: Row(
                   children: [
-                    _cell(context,
-                        row.isPartial ? '${row.year}*' : '${row.year}',
+                    _cell(
+                        context, row.isPartial ? '${row.year}*' : '${row.year}',
                         flex: 1),
                     _cell(context, '₹ ${currencyFormat.format(row.balance)}',
                         flex: 2),

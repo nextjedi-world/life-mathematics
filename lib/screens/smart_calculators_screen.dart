@@ -91,7 +91,6 @@ class SmartCalculatorsScreen extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class _CalcCard extends StatelessWidget {

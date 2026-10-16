@@ -267,8 +267,7 @@ class _InvestmentReturnsScreenState extends State<InvestmentReturnsScreen> {
         SplitBar(
           leftLabel: 'Invested ${rupees(sip.invested)}',
           rightLabel: 'Gain ${rupees(sip.gain)}',
-          leftFraction:
-              sip.maturity == 0 ? 1 : sip.invested / sip.maturity,
+          leftFraction: sip.maturity == 0 ? 1 : sip.invested / sip.maturity,
           leftColor: palette.primary,
           rightColor: palette.green,
         ),

@@ -107,8 +107,7 @@ class CalculatorLogic {
   }
 
   /// Digits actually entered, ignoring sign and decimal point.
-  int get _digitCount =>
-      _displayValue.replaceAll(RegExp(r'[^0-9]'), '').length;
+  int get _digitCount => _displayValue.replaceAll(RegExp(r'[^0-9]'), '').length;
 
   /// True when typing would begin a term unrelated to what the tape already
   /// holds — i.e. straight after `=`. The next tape entry starts a new line.
@@ -288,8 +287,9 @@ class CalculatorLogic {
     return (short: short, long: long);
   }
 
-  static String _trimZeros(String s) =>
-      s.contains('.') ? s.replaceAll(RegExp(r'0+$'), '').replaceAll(RegExp(r'\.$'), '') : s;
+  static String _trimZeros(String s) => s.contains('.')
+      ? s.replaceAll(RegExp(r'0+$'), '').replaceAll(RegExp(r'\.$'), '')
+      : s;
 
   /// `9.0000e+22` → `9e+22`, keeping the exponent intact.
   static String _trimExponential(String s) {

@@ -1,0 +1,28 @@
+# release-please: every push to main updates one release PR (version + CHANGELOG.md) from
+# conventional commits. Merging that PR tags the release. Store uploads still run from
+# azure-pipelines.yml until NEX-1138 moves them to GitHub Actions.
+# Inlined from nextjedi/platform/.github/workflows/release.yml because this repo is public.
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: googleapis/release-please-action@v5
+        with:
+          token: ${{ secrets.RELEASE_TOKEN || github.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

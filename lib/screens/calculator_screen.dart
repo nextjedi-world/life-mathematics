@@ -245,8 +245,7 @@ class _Display extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.palette;
     final expression = calculator.expression;
-    final resultColor =
-        calculator.hasError ? palette.error : palette.onSurface;
+    final resultColor = calculator.hasError ? palette.error : palette.onSurface;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,

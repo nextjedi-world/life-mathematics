@@ -1,0 +1,22 @@
+# Git hooks. Installed by `make setup` (needs lefthook: npm i -g lefthook / brew install lefthook).
+pre-commit:
+  parallel: true
+  commands:
+    dart-format:
+      glob: "*.dart"
+      run: dart format --output=none --set-exit-if-changed {staged_files}
+    flutter-analyze:
+      glob: "*.dart"
+      run: flutter analyze --no-pub {staged_files}
+
+commit-msg:
+  commands:
+    conventional-commit:
+      run: >-
+        head -n1 {1} | grep -Eq '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._/-]+\))?!?: .+'
+        || { echo "Commit message must be a conventional commit, e.g. 'feat(emi): add prepayment'"; exit 1; }
+
+pre-push:
+  commands:
+    verify:
+      run: make verify
