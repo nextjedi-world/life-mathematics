@@ -6,7 +6,7 @@ history. Offline only (shared_preferences + sqflite); no accounts, payments or b
 
 - Product id: `life-mathematics` (`NEXTJEDI_PRODUCT`). Dart package `life_mathematics`.
   Android/iOS id `com.nextjedi.lifemathematics`.
-- Stack: `flutter` (NextJedi Studio Platform, github.com/nextjedi/platform). Public repo
+- Stack: `flutter` (NextJedi Studio Platform, github.com/nextjedi-world/platform). Public repo
   github.com/nextjedi/life-mathematics.
 - Linear: project "Life Mathematics", team NEX. Platform adoption: NEX-1111.
 
@@ -81,10 +81,10 @@ docs/                    setup, requirements, Fastlane, DevOps playbook, trouble
 `PROJECT_SUMMARY.md`, `ISSUES.md` (historical; Linear is the tracker now).
 
 ## Claude Code specifics
-- `.claude/settings.json` enables the `nextjedi` marketplace (nextjedi/platform) and plugin
+- `.claude/settings.json` enables the `nextjedi` marketplace (nextjedi-world/platform) and plugin
   `nextjedi-core` (Stop hook runs `make verify`, protected paths, Linear workflow skills).
   There is no Flutter stack plugin yet. The platform repo is private: loading the plugins needs a
   GitHub login that can read it.
 - CI workflows are inlined (this public repo cannot call the private platform's reusable
-  workflows); keep them in sync with `nextjedi/platform/.github/workflows/`.
+  workflows); keep them in sync with `nextjedi-world/platform/.github/workflows/`.
 - Claude review / @claude workflows skip until the repo variable `CLAUDE_REVIEW_ENABLED` is `true`.
