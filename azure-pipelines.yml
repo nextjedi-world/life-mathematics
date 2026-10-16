@@ -1,3 +1,4 @@
+# superseded by .github/workflows/store-release.yml; delete after the first green GitHub release (NEX-1138, NEX-1019)
 # azure-pipelines.yml
 # Copy this file to the ROOT of the life-mathematics repo as: azure-pipelines.yml
 # See ONBOARDING.md in nextjedi/apps-ops for full setup instructions.

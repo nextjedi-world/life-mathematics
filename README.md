@@ -98,6 +98,35 @@ flutter build ios --release
 flutter build web --release
 ```
 
+## Release
+
+Store uploads run from GitHub Actions, workflow `store-release` (`.github/workflows/store-release.yml`).
+It uses the fastlane lanes in `android/fastlane` and `ios/fastlane` on GitHub-hosted runners
+(ubuntu for Android, macos for iOS). Tags created with the default token do not start workflows, so either
+set the `RELEASE_TOKEN` secret to a PAT (release-please then tags and triggers the upload) or dispatch by hand.
+
+```bash
+# Play internal + TestFlight (also what a pushed v* tag does)
+gh workflow run store-release.yml -R nextjedi-world/life-mathematics -f track=internal -f platforms=both
+# Play open testing + TestFlight
+gh workflow run store-release.yml -R nextjedi-world/life-mathematics -f track=beta
+# Play production + App Store Connect upload (not submitted for review)
+gh workflow run store-release.yml -R nextjedi-world/life-mathematics -f track=production
+```
+
+The Android version code comes from `pubspec.yaml` (`version: x.y.z+build`); iOS takes the next TestFlight
+build number automatically. If secrets are missing, that platform is skipped and the run summary lists the
+missing names.
+
+Repository secrets (names only, never commit values):
+
+| Platform | Secret |
+|---|---|
+| Android | `ANDROID_KEYSTORE_BASE64` (base64 of the upload keystore), `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_PASSWORD`, `PLAY_SERVICE_ACCOUNT_JSON` (raw JSON) |
+| iOS | `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8_BASE64`, `IOS_DIST_CERT_P12_BASE64`, `IOS_DIST_CERT_PASSWORD`, `IOS_PROVISIONING_PROFILE_BASE64` |
+
+Optional repository variable: `ANDROID_KEY_ALIAS` (default `lifemathematics`).
+
 ## Project Structure
 
 ```
