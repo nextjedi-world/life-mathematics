@@ -28,9 +28,9 @@ Flutter is not installed on every machine. If `flutter` is missing, say so and r
 instead of claiming `make verify` passed. Docker works: `ghcr.io/cirruslabs/flutter:3.38.4`.
 
 Release builds and store uploads: Fastlane lanes in `android/fastlane` (`internal`, `beta`,
-`production`), `ios/fastlane` and `macos/fastlane` (`beta`, `release`), run today by
-`azure-pipelines.yml` (template `flutter-deploy.yml` in nextjedi/apps-ops). Moving them to GitHub
-Actions is NEX-1138. See `docs/FASTLANE_SETUP.md` and `docs/DEVOPS_PLAYBOOK.md`.
+`production`), `ios/fastlane` and `macos/fastlane` (`beta`, `release`), run by
+`.github/workflows/store-release.yml` (workflow_dispatch or tag `v*`; secrets in README "Release").
+`azure-pipelines.yml` is superseded and stays until the first green GitHub release (NEX-1138, NEX-1019). See `docs/FASTLANE_SETUP.md` and `docs/DEVOPS_PLAYBOOK.md`.
 
 ## Layout
 ```
