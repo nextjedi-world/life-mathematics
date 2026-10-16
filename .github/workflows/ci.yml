@@ -1,6 +1,6 @@
 # CI for life-mathematics (stack: flutter).
 # The platform's reusable ci-flutter.yml lives in a private repo, which a public repo cannot call,
-# so its steps are inlined here. Keep them in sync with nextjedi/platform/.github/workflows/ci-flutter.yml.
+# so its steps are inlined here. Keep them in sync with nextjedi-world/platform/.github/workflows/ci-flutter.yml.
 # azure-pipelines.yml still does the signed store builds until NEX-1138 / NEX-1019.
 name: ci
 

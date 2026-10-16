@@ -1,6 +1,6 @@
 # PR title must be a conventional commit (it becomes the squash-merge commit release-please reads)
 # and the PR body must reference a Linear issue (Fixes NEX-123).
-# Inlined from nextjedi/platform/.github/workflows/commitlint.yml (a public repo cannot call
+# Inlined from nextjedi-world/platform/.github/workflows/commitlint.yml (a public repo cannot call
 # reusable workflows from the private platform repo). Keep in sync.
 name: commitlint
 

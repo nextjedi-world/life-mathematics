@@ -1,6 +1,6 @@
 # Claude reviews PRs. Skipped until the repo variable CLAUDE_REVIEW_ENABLED is 'true' and the
-# CLAUDE_CODE_OAUTH_TOKEN secret is set (runbook: nextjedi/platform docs/runbooks/claude-github-app.md).
-# Inlined from nextjedi/platform/.github/workflows/claude-review.yml because this repo is public.
+# CLAUDE_CODE_OAUTH_TOKEN secret is set (runbook: nextjedi-world/platform docs/runbooks/claude-github-app.md).
+# Inlined from nextjedi-world/platform/.github/workflows/claude-review.yml because this repo is public.
 name: Claude review
 
 on:

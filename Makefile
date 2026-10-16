@@ -1,4 +1,4 @@
-# Repo contract (nextjedi/platform docs/CONTRACTS.md): setup, dev, verify, e2e.
+# Repo contract (nextjedi-world/platform docs/CONTRACTS.md): setup, dev, verify, e2e.
 # `make verify` is what CI and the Claude Stop hook run. It must stay green.
 # Flutter is not installed on every dev machine; CI (.github/workflows/ci.yml) is the source of truth.
 FLUTTER ?= flutter

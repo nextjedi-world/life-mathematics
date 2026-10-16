@@ -1,6 +1,6 @@
 # Claude answers @claude in issues and PRs (only people with write access can trigger it).
 # Skipped until the repo variable CLAUDE_REVIEW_ENABLED is 'true' and CLAUDE_CODE_OAUTH_TOKEN is set.
-# Inlined from nextjedi/platform/.github/workflows/claude-mention.yml because this repo is public.
+# Inlined from nextjedi-world/platform/.github/workflows/claude-mention.yml because this repo is public.
 name: Claude mention
 
 on:
